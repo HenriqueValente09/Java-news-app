@@ -1,4 +1,4 @@
-package com.valenteNews.newsApp.models;
+package com.valenteNews.newsApp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
