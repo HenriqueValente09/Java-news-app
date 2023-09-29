@@ -23,7 +23,11 @@ public class SeedData implements CommandLineRunner {
             User user1 = new User();
             user1.setName("João");
 
+            User user2 = new User();
+            user2.setName("Matheus");
+
             userService.save(user1);
+            userService.save(user2);
         }
 
 
