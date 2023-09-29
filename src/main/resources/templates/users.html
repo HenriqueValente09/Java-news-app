@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Example Thymeleaf</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Users</h1>
+<ul>
+  <li th:each="user : ${users}">
+    <span th:text="${user.name}"></span>
+  </li>
+</ul>
+</body>
+</html>
