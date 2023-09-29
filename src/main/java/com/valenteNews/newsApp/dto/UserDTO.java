@@ -1,10 +1,11 @@
 package com.valenteNews.newsApp.dto;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
 public class UserDTO {
-    private String username;
-    private String email;
+    private String id;
+    private String name;
 
 }
