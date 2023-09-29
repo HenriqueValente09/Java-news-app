@@ -1,12 +1,12 @@
 package com.valenteNews.newsApp.service;
 
-import com.valenteNews.newsApp.dto.UserDTO;
 import com.valenteNews.newsApp.model.User;
 import com.valenteNews.newsApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,5 +26,9 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public Optional<User> getUserByName(String name) {
+        return userRepository.findByName(name);
     }
 }
