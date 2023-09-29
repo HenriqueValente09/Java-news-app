@@ -5,15 +5,15 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "account")
 @Getter
 @Setter
-@Table(name = "users")
+@Table(name = "account")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private String id;
 
     private String name;
 }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+
 @Component
 public class SeedData implements CommandLineRunner {
     @Autowired
@@ -14,12 +17,15 @@ public class SeedData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user1 = new User();
-        user1.setName("João");
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        List<User> users = userService.getAllUsers();
+        if (users.size() == 0) {
+            User user1 = new User();
+            user1.setName("João");
 
-        userService.save(user1);
+            userService.save(user1);
+        }
+
 
     }
 }
