@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>Users</h1>
+<header th:replace="~{fragments/header :: header}"></header>
 <ul>
   <li th:each="user : ${users}">
     <span th:text="${user.name}"></span>
