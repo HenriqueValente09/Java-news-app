@@ -1,4 +1,4 @@
-package com.valenteNews.newsApp.dto;
+package com.valenteNews.newsApp.dto.user;
 
 import lombok.Data;
 

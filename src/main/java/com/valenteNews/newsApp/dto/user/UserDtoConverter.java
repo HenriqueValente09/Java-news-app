@@ -1,4 +1,4 @@
-package com.valenteNews.newsApp.dto;
+package com.valenteNews.newsApp.dto.user;
 
 import com.valenteNews.newsApp.model.User;
 import com.valenteNews.newsApp.service.UserService;
