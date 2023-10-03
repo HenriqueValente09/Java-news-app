@@ -1,6 +1,7 @@
 package com.valenteNews.newsApp.controller;
 
 import com.valenteNews.newsApp.dto.post.PostDTO;
+import com.valenteNews.newsApp.dto.post.PostDtoConverter;
 import com.valenteNews.newsApp.model.Post;
 import com.valenteNews.newsApp.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -26,14 +27,9 @@ public class PostController {
         Optional<Post> optionalPost = postService.findById(id);
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
-            PostDTO postDTO = new PostDTO();
-            postDTO.setTitle(post.getTitle());
-            postDTO.setContent(post.getContent());
-            postDTO.setImageURL(post.getImageURL());
-            postDTO.setCreatedAt(post.getCreatedAt());
-
+            PostDtoConverter converter = new PostDtoConverter();
+            PostDTO postDTO = converter.toDTO(post);
             System.out.println(postDTO);
-
             model.addAttribute("post", postDTO);
 
             return "post";
