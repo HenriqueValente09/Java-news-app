@@ -6,14 +6,30 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <header th:replace="~{fragments/header :: header}"></header>
-
-<form th:action="@{/register}" method="post" th:object="${userDTO}">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}" required />
-
-    <button type="submit">Register</button>
-</form>
+<div class="posts">
+    <div class="recent-posts">
+        <a th:href="@{'/post?id=' + ${recentPosts[0].id}}" class="post-container recent-post first-post">
+            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[0].imageURL} + ');'"></div>
+            <div class="gradient"></div>
+            <h1 th:text="${recentPosts[0].title}"></h1>
+        </a>
+        <a class="post-container recent-post second-post">
+            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[0].imageURL} + ');'"></div>
+            <div class="gradient"></div>
+            <h1 th:text="${recentPosts[0].title}"></h1>
+        </a>
+        <a class="post-container recent-post third-post">
+            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[0].imageURL} + ');'"></div>
+            <div class="gradient"></div>
+            <h1 th:text="${recentPosts[0].title}"></h1>
+        </a>
+    </div>
+<!--    <a class="post-container" th:each="post : ${posts}" th:href="@{https://www.google.com}">-->
+<!--        <div class="post-background" th:style="'background-image: url(' + ${post.imageURL} + ');'"></div>-->
+<!--        <div class="gradient"></div>-->
+<!--        <h1 th:text="${post.title}"></h1>-->
+<!--    </a>-->
+</div>
 </body>
 </html>
