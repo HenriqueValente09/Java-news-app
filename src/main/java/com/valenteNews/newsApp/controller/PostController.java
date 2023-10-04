@@ -29,12 +29,16 @@ public class PostController {
             Post post = optionalPost.get();
             PostDtoConverter converter = new PostDtoConverter();
             PostDTO postDTO = converter.toDTO(post);
-            System.out.println(postDTO);
             model.addAttribute("post", postDTO);
 
             return "post";
         }
 
         return "404";
+    }
+
+    @GetMapping("/register-post")
+    public String registerPost(Model model){
+        return "register-post";
     }
 }
