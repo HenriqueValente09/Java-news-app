@@ -20,13 +20,14 @@ public class PostDtoConverter{
         postDTO.setContent(post.getContent());
         postDTO.setImageURL(post.getImageURL());
         postDTO.setCreatedAt(post.getCreatedAt());
+        postDTO.setUser(post.getUser());
         return postDTO;
     }
 
-    public User toPost(UserDTO userDTO) {
-        User user = new User();
-        user.setName(userDTO.getName());
-        return user;
-    }
+//    public User toPost(UserDTO userDTO) {
+//        User user = new User();
+//        user.setName(userDTO.getName());
+//        return user;
+//    }
 
 }
