@@ -20,6 +20,8 @@ public class User {
 
     private String name;
 
+    private String email;
+
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<Post> posts;
