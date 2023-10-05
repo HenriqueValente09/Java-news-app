@@ -14,15 +14,15 @@
             <div class="gradient"></div>
             <h1 th:text="${recentPosts[0].title}"></h1>
         </a>
-        <a class="post-container recent-post second-post">
-            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[0].imageURL} + ');'"></div>
+        <a th:href="@{'/post?id=' + ${recentPosts[1].id}}" class="post-container recent-post second-post">
+            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[1].imageURL} + ');'"></div>
             <div class="gradient"></div>
-            <h1 th:text="${recentPosts[0].title}"></h1>
+            <h1 th:text="${recentPosts[1].title}"></h1>
         </a>
-        <a class="post-container recent-post third-post">
-            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[0].imageURL} + ');'"></div>
+        <a th:href="@{'/post?id=' + ${recentPosts[2].id}}" class="post-container recent-post third-post">
+            <div class="post-background" th:style="'background-image: url(' + ${recentPosts[2].imageURL} + ');'"></div>
             <div class="gradient"></div>
-            <h1 th:text="${recentPosts[0].title}"></h1>
+            <h1 th:text="${recentPosts[2].title}"></h1>
         </a>
     </div>
 <!--    <a class="post-container" th:each="post : ${posts}" th:href="@{https://www.google.com}">-->
