@@ -4,9 +4,31 @@
     <title>Example Thymeleaf</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
 <header th:replace="~{fragments/header :: header}"></header>
+<div class="container">
+    <form th:action="@{/create-post}" method="POST" th:object="${post}">
+        <label for="Title">Title:</label>
+        <input type="text" id="title" name="title" th:field="*{title}" />
+
+        <label for="ImageURL">Image URL:</label>
+        <input type="text" id="imageURL" name="imageURL" th:field="*{imageURL}" />
+
+        <label for="Content">Content:</label>
+        <textarea id="content" name="content" th:field="*{content}" />
+
+        <label for="user">Choose a user:</label>
+        <select id="user" name="user" th:field="*{userId}">
+            <option th:each="user : ${users}" th:value="${user.id}">
+                <span th:text="${user.name}"></span>
+            </option>
+        </select>
+
+        <button type="submit">Send</button>
+    </form>
+</div>
 
 </body>
 </html>
