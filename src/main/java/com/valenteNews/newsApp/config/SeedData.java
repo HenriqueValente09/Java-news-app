@@ -43,7 +43,6 @@ public class SeedData implements CommandLineRunner {
             post1.setContent("Lorem Ipsum");
             post1.setImageURL("https://upload.wikimedia.org/wikipedia/pt/e/e5/MonsterHigh_Characters.png");
             Optional<User> user = userService.getUserByName("João");
-            post1.setCreatedAt(LocalDateTime.now());
             post1.setUser(user.get());
             postService.save(post1);
         }

@@ -1,11 +1,9 @@
 package com.valenteNews.newsApp.controller;
 
 import com.valenteNews.newsApp.dto.post.PostDTO;
-import com.valenteNews.newsApp.dto.user.UserDTO;
 import com.valenteNews.newsApp.dto.user.UserDtoConverter;
 import com.valenteNews.newsApp.model.Post;
 import com.valenteNews.newsApp.service.PostService;
-import com.valenteNews.newsApp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +31,10 @@ public class MainController {
         recentPosts = recentPosts.stream()
                 .limit(3)
                 .collect(Collectors.toList());
+
+        if (recentPosts.size() < 3) {
+            return "redirect:/register-post";
+        }
 
         List<PostDTO> recentPostsDTO = new ArrayList<>();
 
