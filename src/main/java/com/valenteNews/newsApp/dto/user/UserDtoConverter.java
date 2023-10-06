@@ -13,6 +13,7 @@ public class UserDtoConverter{
 
     public UserDTO toDTO(User user) {
         UserDTO dto = new UserDTO();
+        dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
         return dto;
@@ -21,6 +22,7 @@ public class UserDtoConverter{
     public User toUser(UserDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
         return user;
     }
 

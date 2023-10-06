@@ -1,5 +1,6 @@
 package com.valenteNews.newsApp.dto.post;
 
+import com.valenteNews.newsApp.dto.user.UserDTO;
 import com.valenteNews.newsApp.model.User;
 import lombok.Data;
 
@@ -13,6 +14,6 @@ public class PostDTO {
     private String content;
     private String imageURL;
     private LocalDateTime createdAt;
-    private User user;
+    private UserDTO user;
 
 }
