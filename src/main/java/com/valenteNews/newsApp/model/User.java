@@ -18,8 +18,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column
     private String name;
 
+    @Column
     private String email;
 
     @OneToMany(mappedBy = "user")
