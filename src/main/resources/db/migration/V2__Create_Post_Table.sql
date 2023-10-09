@@ -4,6 +4,6 @@ CREATE TABLE post (
     content TEXT NOT NULL,
     imageURL TEXT NOT NULL,
     account_id TEXT NOT NULL,
-    createdAt TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     FOREIGN KEY (account_id) REFERENCES "account" (id)
 );
