@@ -9,6 +9,7 @@ import com.valenteNews.newsApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Component
@@ -44,6 +45,7 @@ public class PostDtoConverter{
         post.setTitle(postDTO.getTitle());
         post.setContent(postDTO.getContent());
         post.setImageURL(postDTO.getImageURL());
+        post.setCreatedAt(LocalDateTime.now());
         Optional<User> user = userService.getUserById(postDTO.getUserId());
         if (user.isPresent()) {
             post.setUser(user.get());
