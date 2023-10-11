@@ -11,6 +11,21 @@ header {
     width: 100%;
     height: 70px;
     background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header h1 {
+    color: pink;
+    padding-left: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: pink;
 }
 
 header nav {
@@ -34,6 +49,7 @@ header ul li {
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 0 10px;
 }
 
@@ -49,10 +65,11 @@ header ul li a{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 header ul li a:hover{
-    border-bottom: 5px solid darkred;
+    border-bottom: 5px solid pink;
     margin-bottom: -5px;
 }
 
@@ -90,6 +107,8 @@ header ul li a:hover{
     display: block;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .post-background {
@@ -97,7 +116,12 @@ header ul li a:hover{
     height: 100%;
     border-radius: 10px;
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: cover;
+    transition: .5s ease;
+}
+
+.post-container:hover .post-background {
+    transform: scale(1.1);
 }
 
 .post-container .gradient {
