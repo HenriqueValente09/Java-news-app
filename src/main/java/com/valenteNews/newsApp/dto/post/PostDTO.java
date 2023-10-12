@@ -15,5 +15,4 @@ public class PostDTO {
     private String imageURL;
     private LocalDateTime createdAt;
     private UserDTO user;
-
 }
