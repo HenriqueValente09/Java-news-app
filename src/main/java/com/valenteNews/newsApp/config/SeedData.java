@@ -2,14 +2,12 @@ package com.valenteNews.newsApp.config;
 
 import com.valenteNews.newsApp.model.Post;
 import com.valenteNews.newsApp.model.User;
-import com.valenteNews.newsApp.repository.UserRepository;
 import com.valenteNews.newsApp.service.PostService;
 import com.valenteNews.newsApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
