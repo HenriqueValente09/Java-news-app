@@ -25,11 +25,13 @@
             <h1 th:text="${recentPosts[2].title}"></h1>
         </a>
     </div>
-<!--    <a class="post-container" th:each="post : ${posts}" th:href="@{https://www.google.com}">-->
-<!--        <div class="post-background" th:style="'background-image: url(' + ${post.imageURL} + ');'"></div>-->
-<!--        <div class="gradient"></div>-->
-<!--        <h1 th:text="${post.title}"></h1>-->
-<!--    </a>-->
+    <div class="all-posts">
+        <a class="post-container" th:each="post : ${posts}" th:href="@{'/post?id=' + ${post.id}}">
+            <div class="post-background" th:style="'background-image: url(' + ${post.imageURL} + ');'"></div>
+            <div class="gradient"></div>
+            <h1 th:text="${post.title}"></h1>
+        </a>
+    </div>
 </div>
 </body>
 </html>
