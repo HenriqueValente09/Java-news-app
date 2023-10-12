@@ -1,8 +1,7 @@
 package com.valenteNews.newsApp.controller;
 
 import com.valenteNews.newsApp.dto.user.UserDTO;
-import com.valenteNews.newsApp.dto.user.UserDtoConverter;
-import com.valenteNews.newsApp.model.Post;
+import com.valenteNews.newsApp.mapper.UserMapper;
 import com.valenteNews.newsApp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,19 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final UserDtoConverter userDtoConverter;
+    private final UserMapper userMapper;
 
     @GetMapping("/users")
     public String users(Model model) {
-        List<Post> userPosts = userService.getUserByName("João").get().getPosts();
-        System.out.println(userPosts.get(0).getTitle());
-        model.addAttribute("users", userService.getAllUsers());
+        List<UserDTO> userList = userMapper.UsersToUserDTO(userService.getAllUsers());
+        model.addAttribute("users", userList);
         return "users";
     }
 
     @PostMapping("/register")
     public String processRegistration(@ModelAttribute("user") UserDTO userDTO) {
-        userService.save(userDtoConverter.toUser(userDTO));
+        userService.save(userMapper.UserDTOtoUser(userDTO));
         return "redirect:/";
     }
 }

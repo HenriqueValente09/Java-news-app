@@ -1,7 +1,7 @@
 package com.valenteNews.newsApp.controller;
 
 import com.valenteNews.newsApp.dto.post.PostDTO;
-import com.valenteNews.newsApp.dto.user.UserDtoConverter;
+import com.valenteNews.newsApp.mapper.PostMapper;
 import com.valenteNews.newsApp.model.Post;
 import com.valenteNews.newsApp.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -18,14 +18,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MainController {
     private final PostService postService;
-    private final UserDtoConverter userDtoConverter;
+
+    private final PostMapper postMapper;
 
     @GetMapping("/")
     public String home(Model model) {
-        List<Post> recentPosts = postService.getAllPosts();
+        List<PostDTO> posts = postMapper.postsToPostDTO(postService.getAllPosts());
+        List<PostDTO> recentPosts = posts;
 
         recentPosts = recentPosts.stream()
-                .sorted(Comparator.comparing(Post::getCreatedAt).reversed())
+                .sorted(Comparator.comparing(PostDTO::getCreatedAt).reversed())
                 .collect(Collectors.toList());
 
         recentPosts = recentPosts.stream()
@@ -36,20 +38,10 @@ public class MainController {
             return "redirect:/register-post";
         }
 
-        List<PostDTO> recentPostsDTO = new ArrayList<>();
+        posts.removeAll(recentPosts);
 
-        for (Post post : recentPosts) {
-            PostDTO postDTO = new PostDTO();
-            postDTO.setId(post.getId());
-            postDTO.setTitle(post.getTitle());
-            postDTO.setContent(post.getContent());
-            postDTO.setImageURL(post.getImageURL());
-
-            recentPostsDTO.add(postDTO);
-        }
-
-        model.addAttribute("posts", postService.getAllPosts());
-        model.addAttribute("recentPosts", recentPostsDTO);
+        model.addAttribute("posts", posts);
+        model.addAttribute("recentPosts", recentPosts);
         return "home";
     }
 }
