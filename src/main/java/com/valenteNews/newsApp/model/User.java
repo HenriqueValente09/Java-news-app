@@ -2,7 +2,6 @@ package com.valenteNews.newsApp.model;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,5 +26,4 @@ public class User {
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<Post> posts;
-
 }
