@@ -1,5 +1,6 @@
 package com.valenteNews.newsApp.mapper;
 
+import com.valenteNews.newsApp.dto.user.RegisterUserDTO;
 import com.valenteNews.newsApp.dto.user.UserDTO;
 import com.valenteNews.newsApp.model.User;
 import org.mapstruct.Mapper;
@@ -20,4 +21,6 @@ public interface UserMapper {
 
     @Mapping(target = "id", source = "id")
     List<UserDTO> UsersToUserDTO(List<User> users);
+
+    User RegisterUserDTOToUser(RegisterUserDTO userDTO);
 }
