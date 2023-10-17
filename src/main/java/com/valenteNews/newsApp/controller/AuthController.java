@@ -51,14 +51,13 @@ public class AuthController {
         User user = (User) auth.getPrincipal();
         session.setAttribute("user", user.getEmail());
         session.setAttribute("user_role", user.getRole());
-        System.out.println(user.getName());
-        System.out.println(session.getId());
+        session.setMaxInactiveInterval(1800);
         return "redirect:/users";
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        System.out.println(authentication);
+    public String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication, HttpSession session) {
+        session.setMaxInactiveInterval(0);
         this.logoutHandler.logout(request, response, authentication);
         return "redirect:/home";
     }
