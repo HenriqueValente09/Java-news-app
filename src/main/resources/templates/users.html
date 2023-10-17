@@ -12,5 +12,14 @@
     <span th:text="${user.name}"></span>
   </li>
 </ul>
+<div sec:authorize="isAuthenticated()">
+  This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+  This content is only shown to administrators.
+</div>
+<span sec:authentication="principal.name">Bob</span>
+<span sec:authentication="principal.email">Bob</span>
+Roles: <span sec:authentication="authorities"></span>
 </body>
 </html>
