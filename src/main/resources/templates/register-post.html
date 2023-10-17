@@ -19,12 +19,7 @@
         <label for="Content">Content:</label>
         <textarea id="content" name="content" th:field="*{content}" />
 
-        <label for="user">Choose a user:</label>
-        <select id="user" name="user" th:field="*{userId}">
-            <option th:each="user : ${users}" th:value="${user.id}">
-                <span th:text="${user.name}"></span>
-            </option>
-        </select>
+        <input type="hidden" id="userEmail" th:value="${#authentication.principal.get().getEmail}" name="userEmail"/>
 
         <button type="submit">Send</button>
     </form>

@@ -41,8 +41,6 @@ public class PostController {
     @GetMapping("/register-post")
     public String registerPost(Model model){
         RegisterPostDTO post = new RegisterPostDTO();
-        List<UserDTO> users = userMapper.UsersToUserDTO(userService.getAllUsers());
-        model.addAttribute("users", users);
         model.addAttribute("post", post);
         return "register-post";
     }

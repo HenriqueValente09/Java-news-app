@@ -29,11 +29,11 @@ public abstract class PostMapper {
     @Mapping(target = "id", source = "id")
     public abstract List<PostDTO> postsToPostDTO(List<Post> posts);
 
-    @Mapping(target = "user", expression = "java(getUserById(postDTO.getUserId()))")
+    @Mapping(target = "user", expression = "java(getUserByEmail(postDTO.getUserEmail()))")
     public abstract Post registerPostDTOtoPost(RegisterPostDTO postDTO);
 
-    User getUserById(String userId) {
-        Optional<User> user = userService.getUserById(userId);
+    User getUserByEmail(String email) {
+        Optional<User> user = userService.getUserByEmail(email);
         if (user.isPresent()){
             return user.get();
         }

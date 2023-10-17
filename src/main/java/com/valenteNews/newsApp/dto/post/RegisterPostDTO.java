@@ -11,5 +11,5 @@ public class RegisterPostDTO {
 
     private String content;
 
-    private String userId;
+    private String userEmail;
 }
