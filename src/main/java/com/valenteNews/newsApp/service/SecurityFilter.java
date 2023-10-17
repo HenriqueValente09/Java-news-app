@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -31,7 +32,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String auth = (String) request.getSession().getAttribute("user");
         if (auth != null) {
-            User user = userRepository.findByEmail((String) request.getSession().getAttribute("user"));
+            Optional<User> optionalUser = userRepository.findByEmail((String) request.getSession().getAttribute("user"));
+            User user = optionalUser.get();
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
