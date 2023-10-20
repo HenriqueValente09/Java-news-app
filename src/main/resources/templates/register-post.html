@@ -19,7 +19,7 @@
         <label for="Content">Content:</label>
         <textarea id="content" name="content" th:field="*{content}" />
 
-        <input type="hidden" id="userEmail" th:value="${#authentication.principal.get().getEmail}" name="userEmail"/>
+        <input type="hidden" id="userEmail" th:value="${#authentication.principal.getEmail}" name="userEmail"/>
 
         <button type="submit">Send</button>
     </form>
