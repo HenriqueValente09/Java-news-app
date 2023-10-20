@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Example Thymeleaf</title>
+    <title>Example Thymeleaf</title>
 
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        table, thead, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <header th:replace="~{fragments/header :: header}"></header>
-<ul>
-  <li th:each="user : ${users}">
-    <span th:text="${user.name}"></span>
-  </li>
-</ul>
 <div sec:authorize="isAuthenticated()">
-  This content is only shown to authenticated users.
+    This content is only shown to authenticated users.
 </div>
 <div sec:authorize="hasRole('ADMIN')">
-  This content is only shown to administrators.
+    This content is only shown to administrators.
 </div>
 <span sec:authentication="principal.name">Bob</span>
 <span sec:authentication="principal.email">Bob</span>
 Roles: <span sec:authentication="authorities"></span>
+<table>
+    <thead>
+    <tr>
+        <th colspan="2">Users</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${userPage.content}">
+        <td th:text="${user.name}"></td>
+    </tr>
+    </tbody>
+    <div th:if="${userPage.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/users(size=${userPage.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==userPage.number + 1} ? active"></a>
+    </div>
+</table>
 </body>
 </html>
