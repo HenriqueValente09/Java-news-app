@@ -52,7 +52,7 @@ public class AuthController {
         session.setAttribute("user", user.getEmail());
         session.setAttribute("user_role", user.getRole());
         session.setMaxInactiveInterval(1800);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @PostMapping("/logout")
@@ -73,6 +73,6 @@ public class AuthController {
 
         this.repository.save(newUser);
 
-        return "redirect:/users";
+        return "redirect:/login";
     }
 }

@@ -1,5 +1,7 @@
 package com.valenteNews.newsApp.service;
 
+import com.valenteNews.newsApp.dto.user.UserDTO;
+import com.valenteNews.newsApp.mapper.UserMapper;
 import com.valenteNews.newsApp.model.User;
 import com.valenteNews.newsApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +23,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserMapper userMapper;
 
-
-    public Page<User> findPaginated(Pageable pageable) {
-        List<User> users = userRepository.findAll();
+    public Page<UserDTO> findPaginated(Pageable pageable) {
+        List<User> userList = userRepository.findAll();
+        List<UserDTO> users = userMapper.UsersToUserDTO(userList);
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
-        List<User> list;
+        List<UserDTO> list;
 
         if (users.size() < startItem) {
             list = Collections.emptyList();
@@ -37,8 +41,8 @@ public class UserService {
             list = users.subList(startItem, toIndex);
         }
 
-        Page<User> userPage
-                = new PageImpl<User>(list, PageRequest.of(currentPage, pageSize), users.size());
+        Page<UserDTO> userPage
+                = new PageImpl<UserDTO>(list, PageRequest.of(currentPage, pageSize), users.size());
 
         return userPage;
     }

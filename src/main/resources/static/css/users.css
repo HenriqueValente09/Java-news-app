@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.users-table {
+    border: 2px solid black;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.user-row {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.user-row:first-child {
+    background-color: black;
+    color: white;
+}
+
+.user-row p {
+    text-align: left;
+    width: 150px;
+    padding: 5px;
+    border: 2px solid black;
+    word-break: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,12 +1,16 @@
 package com.valenteNews.newsApp.controller;
 
 import com.valenteNews.newsApp.dto.auth.LoginResponseDTO;
+import com.valenteNews.newsApp.dto.post.PostDTO;
 import com.valenteNews.newsApp.dto.post.RegisterPostDTO;
 import com.valenteNews.newsApp.dto.user.AuthDTO;
 import com.valenteNews.newsApp.dto.user.RegisterUserDTO;
 import com.valenteNews.newsApp.dto.user.UserDTO;
+import com.valenteNews.newsApp.mapper.PostMapper;
 import com.valenteNews.newsApp.mapper.UserMapper;
+import com.valenteNews.newsApp.model.Post;
 import com.valenteNews.newsApp.model.User;
+import com.valenteNews.newsApp.service.PostService;
 import com.valenteNews.newsApp.service.TokenService;
 import com.valenteNews.newsApp.service.UserService;
 import jakarta.servlet.http.Cookie;
@@ -37,15 +41,16 @@ import java.util.stream.IntStream;
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
-    private final TokenService tokenService;
+    private final PostService postService;
+    private final PostMapper postMapper;
 
     @GetMapping("/users")
     public String users(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         List<UserDTO> userList = userMapper.UsersToUserDTO(userService.getAllUsers());
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(2);
+        int pageSize = size.orElse(10);
 
-        Page<User> userPage = userService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+        Page<UserDTO> userPage = userService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
         model.addAttribute("userPage", userPage);
         int totalPages = userPage.getTotalPages();
         if (totalPages > 0) {
@@ -53,11 +58,35 @@ public class UserController {
                     .boxed()
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
-            System.out.println(pageNumbers);
         }
 
         model.addAttribute("users", userList);
         return "users";
+    }
+
+    @GetMapping("/user-posts")
+    public String users(Model model, @RequestParam("userId") String userId, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        Optional<User> optionalUser = userService.getUserById(userId);
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+
+        if (optionalUser.isPresent()){
+            User user = optionalUser.get();
+            List<PostDTO> postList = postMapper.postsToPostDTO(user.getPosts());
+            Page<PostDTO> posts = postService.findPaginated(PageRequest.of(currentPage - 1, pageSize), postList);
+            int totalPages = posts.getTotalPages();
+            if (totalPages > 0) {
+                List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                        .boxed()
+                        .collect(Collectors.toList());
+                model.addAttribute("pageNumbers", pageNumbers);
+            }
+
+            model.addAttribute("posts", posts);
+
+            return "user-posts";
+        }
+        return "404";
     }
 
     @GetMapping("/register")

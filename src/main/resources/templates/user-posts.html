@@ -20,18 +20,19 @@
 <div class="container">
     <div class="users-table">
         <div class="user-row">
-            <p>User</p>
-            <p>Role</p>
+            <p>Title</p>
+            <p>Created At</p>
         </div>
-        <div class="user-row" th:each="user : ${userPage.content}">
-            <p><a th:href="@{/user-posts(userId=${user.id})}" th:text="${user.name}"></a></p>
-            <p th:text="${user.role}"></p>
+        <div class="user-row" th:each="post : ${posts.content}">
+            <p th:text="${post.title}"></p>
+            <p th:text="${post.createdAt}"></p>
+            <p><a th:href="@{/delete-post(postId=${post.id})}">Delete</a></p>
         </div>
-        <div th:if="${userPage.totalPages > 0}" class="pagination"
+        <div th:if="${posts.totalPages > 0}" class="pagination"
              th:each="pageNumber : ${pageNumbers}">
-            <a th:href="@{/users(size=${userPage.size}, page=${pageNumber})}"
+            <a th:href="@{/user-posts(size=${posts.size}, page=${pageNumber})}"
                th:text=${pageNumber}
-               th:class="${pageNumber==userPage.number + 1} ? active"></a>
+               th:class="${pageNumber==posts.number + 1} ? active"></a>
         </div>
     </div>
 </div>
