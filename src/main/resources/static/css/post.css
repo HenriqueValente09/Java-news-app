@@ -11,6 +11,7 @@
 .post h1 {
     font-family: sans-serif;
     font-size: 3rem;
+    word-break: break-word;
 }
 
 .post hr {

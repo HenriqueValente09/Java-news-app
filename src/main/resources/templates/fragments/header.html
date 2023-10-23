@@ -4,7 +4,7 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li sec:authorize="hasRole('ADMIN')"><a href="/users">Users</a></li>
-      <li sec:authorize="hasRole('ADMIN')"><a href="/register-post" >Register Post</a></li>
+      <li sec:authorize="hasRole('USER')"><a href="/register-post" >Register Post</a></li>
       <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
       <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
       <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>

@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/register-post").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/register-post").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/user-posts").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )

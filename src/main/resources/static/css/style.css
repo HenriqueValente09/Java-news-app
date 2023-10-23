@@ -18,7 +18,7 @@ header {
 }
 
 header h1 {
-    color: pink;
+    color: white;
     padding-left: 20px;
     font-family: sans-serif;
     font-weight: bold;
@@ -26,7 +26,7 @@ header h1 {
 
 header h1 a {
     text-decoration: none;
-    color: pink;
+    color: white;
 }
 
 header nav {
@@ -67,11 +67,6 @@ header ul li a{
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-header ul li a:hover{
-    border-bottom: 5px solid pink;
-    margin-bottom: -5px;
 }
 
 .posts {
@@ -154,21 +149,17 @@ header ul li a:hover{
     word-break: break-word;
 }
 
-.post-container:nth-child(1) h1 {
-    font-size: clamp(2rem, 1.561rem + 1.9512vw, 4rem);
-}
-
 .all-posts {
     margin: 50px 0;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .all-posts .post-container{
-    width: 33%;
+    width: 30%;
     min-width: 400px;
     aspect-ratio: 3/2;
-    margin: 20px 0;
+    margin-right: auto;
 }

@@ -18,22 +18,20 @@
 <!--<span sec:authentication="principal.email">Bob</span>-->
 <!--Roles: <span sec:authentication="authorities"></span>-->
 <div class="container">
-    <div class="users-table">
-        <div class="user-row">
-            <p>User</p>
-            <p>Role</p>
-        </div>
-        <div class="user-row" th:each="user : ${userPage.content}">
-            <p><a th:href="@{/user-posts(userId=${user.id})}" th:text="${user.name}"></a></p>
-            <p th:text="${user.role}"></p>
-        </div>
-        <div th:if="${userPage.totalPages > 0}" class="pagination"
-             th:each="pageNumber : ${pageNumbers}">
-            <a th:href="@{/users(size=${userPage.size}, page=${pageNumber})}"
-               th:text=${pageNumber}
-               th:class="${pageNumber==userPage.number + 1} ? active"></a>
-        </div>
-    </div>
+    <table class="rwd-table">
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${userPage.content}">
+                <td><p><a th:href="@{/user-posts(userId=${user.id})}" th:text="${user.name}"></a></p></td>
+                <td><p th:text="${user.role}"></p></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

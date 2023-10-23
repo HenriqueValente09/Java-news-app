@@ -18,23 +18,28 @@
 <!--<span sec:authentication="principal.email">Bob</span>-->
 <!--Roles: <span sec:authentication="authorities"></span>-->
 <div class="container">
-    <div class="users-table">
-        <div class="user-row">
-            <p>Title</p>
-            <p>Created At</p>
-        </div>
-        <div class="user-row" th:each="post : ${posts.content}">
-            <p th:text="${post.title}"></p>
-            <p th:text="${post.createdAt}"></p>
-            <p><a th:href="@{/delete-post(postId=${post.id})}">Delete</a></p>
-        </div>
+        <table class="rwd-table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Created At</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${posts.content}">
+                <td><p th:text="${post.title}"></p></td>
+                <td><p th:text="${post.createdAt}"></p>
+                <td><a th:href="@{/edit-post(postId=${post.id})}">Edit</a></td>
+                <td><a th:href="@{/delete-post(postId=${post.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
         <div th:if="${posts.totalPages > 0}" class="pagination"
              th:each="pageNumber : ${pageNumbers}">
             <a th:href="@{/user-posts(size=${posts.size}, page=${pageNumber})}"
                th:text=${pageNumber}
                th:class="${pageNumber==posts.number + 1} ? active"></a>
         </div>
-    </div>
 </div>
 </body>
 </html>
