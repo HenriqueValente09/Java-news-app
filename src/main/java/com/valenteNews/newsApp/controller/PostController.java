@@ -63,4 +63,31 @@ public class PostController {
         }
         return new RedirectView(referer);
     }
+
+    @GetMapping("/edit-post")
+    public String editPost(Model model, @RequestParam String postId, HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
+        Optional<Post> optionalPost = postService.findById(postId);
+        if (optionalPost.isPresent()){
+            model.addAttribute("edit", true);
+            model.addAttribute("post", optionalPost.get());
+            return "register-post";
+        }
+        return "404";
+    }
+
+    @PostMapping("/editPost")
+    public String updatePost(@ModelAttribute("post") PostDTO postDTO) {
+        Optional<Post> optionalPost = postService.findById(postDTO.getId());
+        System.out.println(postDTO);
+        if (optionalPost.isPresent()){
+            Post post = optionalPost.get();
+            post.setTitle(postDTO.getTitle());
+            post.setImageURL(postDTO.getImageURL());
+            post.setContent(postDTO.getContent());
+            postService.save(post);
+            return "redirect:/";
+        }
+        return "404";
+    }
 }

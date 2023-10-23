@@ -31,9 +31,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/edit-post").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/delete-post").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/register-post").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/user-posts").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
