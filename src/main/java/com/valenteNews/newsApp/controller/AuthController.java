@@ -64,7 +64,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute RegisterUserDTO data){
-        if(this.repository.findByEmail(data.getEmail()) != null) return "404";
+        if(this.repository.findByEmail(data.getEmail()).isPresent()) return "404";
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.getPassword());
         User newUser = userMapper.RegisterUserDTOToUser(data);
