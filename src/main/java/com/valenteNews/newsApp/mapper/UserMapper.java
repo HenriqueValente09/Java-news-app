@@ -17,9 +17,6 @@ public interface UserMapper {
     UserDTO userToUserDTO(User user);
 
     @Mapping(target = "id", source = "id")
-    User UserDTOtoUser(UserDTO userDTO);
-
-    @Mapping(target = "id", source = "id")
     @Mapping(target = "role", source = "role")
     List<UserDTO> UsersToUserDTO(List<User> users);
 
